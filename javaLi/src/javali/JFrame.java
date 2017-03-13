@@ -56,7 +56,7 @@ public class JFrame extends javax.swing.JFrame {
             
             rs = stnt.executeQuery(query);
             rs.next();
-            String name = rs.getString("Name");
+            String name = rs.getString("NAME");
             int id = rs.getInt("ID");
             double gpa = rs.getDouble("GPA");
             
@@ -103,6 +103,7 @@ public class JFrame extends javax.swing.JFrame {
         First = new javax.swing.JButton();
         Save = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,15 +268,27 @@ public class JFrame extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 249, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 303, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,6 +296,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -313,10 +327,10 @@ public class JFrame extends javax.swing.JFrame {
         double newGPA = Double.parseDouble(sGPA);
         
         try{
-            rs.updateString("Name", sName);
+            rs.updateString("NAME", sName);
             rs.updateInt("ID", newID);
             rs.updateDouble("GPA", newGPA);
-            
+            rs.updateRow();
             JOptionPane.showMessageDialog(this, "Data updated");
         }
         catch(SQLException ger){
@@ -396,7 +410,7 @@ public class JFrame extends javax.swing.JFrame {
         }
         catch(SQLException ger){
             JOptionPane.showMessageDialog(this, ger.getMessage());
-        }finally{
+        }/*finally{
             if(stnt != null){
                 try{
                     stnt.close();
@@ -405,7 +419,7 @@ public class JFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, ger.getMessage());
                 }
             }
-        }
+        }*/
     }//GEN-LAST:event_SaveActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
@@ -417,7 +431,7 @@ public class JFrame extends javax.swing.JFrame {
             Update.setEnabled(true);
             Delete.setEnabled(true);
             Save.setEnabled(false);
-            JOptionPane.showMessageDialog(this, "All records are cancelled!");
+            JOptionPane.showMessageDialog(this, "adding data canceled");
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -475,6 +489,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField namefield;
     // End of variables declaration//GEN-END:variables
 }
